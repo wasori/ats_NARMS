@@ -1,0 +1,270 @@
+
+.main-left {
+    width: 40%;
+    height: 100vh;
+    float: left;
+}
+
+.main-right {
+    width: 60%;
+    height: 100vh;
+    float: left;
+}
+/* main-alert */
+
+.main-alert {
+    margin-top: 70px;
+    padding: 15px 15px 15px 30px;
+    width: 100%;
+    height: 35%;
+}
+
+.main-alert-area {
+    width: 100%;
+    height: 270px;
+    background-color: aliceblue;
+    border-radius: 3px;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.main-alert p{
+    font-size: 25px;
+    font-weight: 600;
+    margin: 5px 0px 15px 0px;
+}
+
+.main-alarm-list {
+    overflow-y: auto;
+    height: 267px;
+    padding: 0;
+    margin: 0;
+}
+
+.main-alarm-list li {
+    border-bottom: 1px solid #A2A7B3;
+    /* background-color: #fff; */
+    padding: 11px 20px;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.main-alarm-list li:after {
+    content: '';
+    display: inline-block;
+    clear: both;
+}
+
+.main-alarm-list .txt {
+    float: left;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.main-alarm-list .group {
+    float: right;
+}
+
+.main-alarm-list .time {
+    margin-right: 10px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.main-alarm-list button {
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
+
+/* ------------- */
+/* main-schedule */
+
+.main-schedule {
+    width: 100%;
+    height: 57%;
+    padding: 15px 15px 15px 30px;
+}
+
+.main-schedule-area {
+    width: 100%;
+    height: 450px;
+    background-color: aliceblue;
+    border-radius: 3px;
+    border: 1px solid rgb(182, 182, 182);
+    padding: 10px;
+}
+
+.main-schedule p{
+    font-size: 25px;
+    font-weight: 600;
+    margin: 10px 0px 10px 0px;
+}
+
+/* main-schedule-search */
+
+.main-schedule-search .selectbox{
+    width: 100px;
+}
+
+.cr{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.cr select, input, button {
+    margin-right: 10px;
+}
+
+.main-schedule-area form button {
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+    padding: 7px 15px;
+    background-color: #63ca68;
+    border: 0;
+    border-radius: 5px;
+    height: 30px;
+    line-height: 15px;
+}
+
+.main-schedule-table {
+    height: 370px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid gray;
+}
+
+.main-schedule-table .t1{
+    /* width: 550px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-schedule-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.main-schedule-button button {
+    margin-right: 10px;
+    width: 100px;
+    height: 30px;
+    border: 0;
+    border-radius: 5px;
+    color: aliceblue;
+}
+
+.main-schedule-table2 {
+    margin-top: 20px;
+}
+
+.main-schedule-table2 select{
+    width: 85%;
+    height: 27px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* ------------ */
+/* main-robo */
+
+.main-robo {
+    margin-top: 70px;
+    height: 92vh;
+    padding: 15px 30px 15px 15px;
+}
+
+.main-robo-area {
+    width: 100%;
+    height: 775px;
+    padding: 10px;
+    background-color: aliceblue;
+    border-radius: 3px;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.main-robo p{
+    font-size: 25px;
+    font-weight: 600;
+    margin: 5px 0px 15px 0px;
+}
+
+.main-robo-left {
+    width: 65%;
+    height: 750px;
+    border-right: 2px solid rgb(207, 207, 207);
+    float: left;
+    padding: 10px;
+}
+
+.main-robo-table {
+    height: 740px;
+    overflow-y: auto;
+}
+
+.main-robo-table .t1{
+    width: 100%;
+    height: 740px;
+    border: 1px solid black;
+}
+
+.main-robo-right {
+    width: 35%;
+    height: 750px;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 15px 0px 15px;
+}
+
+.main-robo-right-1 {
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+}
+
+.main-robo-right-2 {
+    width: 100%;
+    height: 130px;
+}
+
+.main-robo-right p {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 7px 0px 7px 0px;
+}
+
+.main-robo-right-3 {
+    width: 100%;
+    height: 380px;
+    border: 1px solid gainsboro;
+    background-color: blanchedalmond;
+    overflow-y: auto;
+}
+
+.main-robo-right-3 p {
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.main-robo-button {
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+    background-color: rgb(167, 214, 155);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}

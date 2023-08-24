@@ -1,0 +1,170 @@
+/* area */
+
+.admin-area-1 {
+    width: 40%;
+    height: 100vh;
+    float: left;
+}
+
+.admin-area-2 {
+    width: 40%;
+    height: 100vh;
+    float: left;
+}
+
+.admin-area-3 {
+    width: 20%;
+    height: 100vh;
+    float: left;
+}
+
+.admin-management,
+.data-management,
+.time-management {
+    margin-top: 70px;
+    padding: 15px 10px 15px 10px;
+    width: 100%;
+    height: 92.5vh;
+}
+
+.admin-body-area {
+    width: 100%;
+    height: 775px;
+    background-color: aliceblue;
+    border-radius: 3px;
+    border: 1px solid rgb(182, 182, 182);
+}
+
+.main-title {
+    font-size: 25px;
+    font-weight: 600;
+    margin: 5px 0px 15px 0px;
+}
+
+/* member-management */
+
+.admin-management-search,
+.data-management-search {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.admin-management-search select,
+.admin-management-search input,
+.data-management-search select,
+.data-management-search input {
+    width: 200px;
+    height: 35px;
+    /* margin-right: 20px; */
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid rgb(158, 158, 158);
+}
+
+.admin-management-search button,
+.data-management-search button {
+    width: 100px;
+    height: 35px;
+    background-color: rgb(89, 180, 89);
+    border: 0;
+    border-radius: 5px;
+    color: #f0f0f0;
+    font-size: 17px;
+}
+
+.admin-management-table {
+    margin-top: 20px;
+    overflow-y: auto;
+    height: 500px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-management-table2 {
+    margin-top: 20px;
+    overflow-y: auto;
+    height: 100px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-management-button,
+.data-management-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.admin-management-button button,
+.data-management-button button {
+    width: 130px;
+    height: 40px;
+    margin-left: 10px;
+    color: aliceblue;
+    border: 0;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+.admin-management-table2 select{
+    width: 85%;
+    height: 27px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+/* data-management */
+
+.data-management-table {
+    margin-top: 20px;
+    overflow-y: auto;
+    height: 620px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* time-management */
+
+.time-management-area {
+    width: 90%;
+    height: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid gainsboro;
+    background-color: blanchedalmond;
+    overflow-y: auto;
+}
+
+.time-management-area p {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.admin-body-area p {
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.time-management-area-2 {
+    margin-top: 20px;
+}
+
+.time-management-list {
+    overflow-y: auto;
+    height: 267px;
+    padding: 10px;
+}
+
+.time-management-list li {
+    overflow: hidden;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+.time-management-list button {
+    float: right;
+}

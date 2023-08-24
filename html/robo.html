@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROBO</title>
+    <link href="../css/robo.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+</head>
+<body>
+    <!------------------- 네브바 ----------------------->
+    <nav>
+        <div class="navbar__logo">
+            <a href="main.html">NARMS</a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="main.html">로봇관리</a></li>
+            <li><a href="data.html">데이터 조회</a></li>
+            <li><a href="admin.html">관리자 설정</a></li>
+        </ul>
+        <ul class="navbar__icons">
+            <li><a href="#">홍길동</a></li>
+            <li><a href="login.html">LogOut</a></li>
+        </ul>
+    </nav>
+    <!------------------------------------------------>
+    <div class = "robo-left">
+        <div class = "robo-map">
+            <p>OOO 환경 맵</p>
+            <div class = "robo-map-area">
+                <img src="../img/second-floor.png" width="100%" height="100%">
+            </div>
+        </div>
+    </div>
+    <div class = "robo-right">
+        <div class = "robo-manager">
+            <div class = "robo-manager-area">
+                <div class = "robo-zoom-area">
+                    <span>화면 조절</span>
+                    <button class = "robo-zoom-button" type = "button">Zoom In</button>
+                    <button class = "robo-zoom-button" type = "button">Zoom Out</button>
+                </div>
+                <div class = "robo-control-area">
+                    <p>로봇 제어</p>
+                    <div class = "robo-control-area-1">
+                        <span>로봇</span>
+                        <select>
+                            <option value="" disabled selected>-</option>
+                            <option value="search-option1">검색 옵션1</option>
+                            <option value="search-option2">검색 옵션2</option>
+                            <option value="search-option3">검색 옵션3</option>
+                        </select>
+                        <span>호실</span>
+                        <select>
+                            <option value="" disabled selected>-</option>
+                            <option value="search-option1">검색 옵션1</option>
+                            <option value="search-option2">검색 옵션2</option>
+                            <option value="search-option3">검색 옵션3</option>
+                        </select>
+                        <span>병상</span>
+                        <select>
+                            <option value="" disabled selected>-</option>
+                            <option value="search-option1">검색 옵션1</option>
+                            <option value="search-option2">검색 옵션2</option>
+                            <option value="search-option3">검색 옵션3</option>
+                        </select>
+                    </div>
+                    <div class = "robo-control-area-2">
+                        <button>시작</button>
+                        <button>페트롤</button>
+                        <button>복귀</button>
+                        <button>정지</button>
+                    </div>
+                </div>
+                <div class = "robo-alert">
+                    <p>알람</p>
+                    <div class = "robo-alert-area">
+                        <ul class="robo-alarm-list" id="alarm-list">
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                            <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>                   
+                        </ul>
+                    </div>
+                </div>
+                <div class = "return-button">
+                    <button type="button" onClick="location.href='main.html'">메인화면으로 가기</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

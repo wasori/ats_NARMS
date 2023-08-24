@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROBO</title>
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.1.0/paho-mqtt.min.js"></script>
+</head>
+<body>
+    <!------------------- 네브바 ----------------------->
+    <nav>
+        <div class="navbar__logo">
+            <a>NARMS</a>
+        </div>
+        <ul class="navbar__menu">
+            <li><a href="main.html">로봇관리</a></li>
+            <li><a href="data.html">데이터 조회</a></li>
+            <li><a href="admin.html">관리자 설정</a></li>
+        </ul>
+        <ul class="navbar__icons">
+            <li><a href="#" id="admin-id">admin</a></li>
+            <li><a href="login.html">LogOut</a></li>
+        </ul>
+    </nav>
+    <!------------------------------------------------>
+    <div class = "main-left">
+        <div class = "main-alert">
+            <p>알람</p>
+            <div class = "main-alert-area">
+                <ul class="main-alarm-list" id="alarm-list">
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>
+                    <li><span class="txt">MR01 로봇 물 감지 경고</span><span class="group"><span class="time">09-14 오후 08:30</span><button type="button">확인</button></span></li>                   
+                </ul>
+            </div>
+        </div>
+        <div class = "main-schedule">
+            <p>로봇 스케줄 관리</p>
+            <div class = "main-schedule-area">
+                <div class = "main-schedule-search">
+                    <form class="cr">
+                        <select id="schedule-search" name="search-option" class="selectbox" style="text-align: center;">
+                            <option value="all">전체</option>
+                            <option value="number">스케줄 번호</option>
+                            <option value="id">로봇 ID</option>
+                            <option value="room">호실</option>
+                            <option value="sickbed">병상</option>
+                            <option value="schedule">스케줄</option>
+                            <option value="progress">진행여부</option>
+                        </select>
+                        <input type="text" id="schedule-input" name="search-input" placeholder="검색어를 입력해주세요" class="input txt">
+                        <button type="button" id="schedule-bn">검색</button>
+                    </form>
+                </div>
+                <div class = "main-schedule-table">
+                    <table class = "t1" id="schedule-table">
+                        <colgroup>
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 10%;">
+                            <col style="width: 20%;">
+                            <col style="width: 15%;">
+                            <col style="width: 25%;">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>로봇ID</th>
+                                <th>호실</th>
+                                <th>병상</th>
+                                <th>스케줄</th>
+                                <th>진행 여부</th>
+                                <th>업데이트 날짜</th>
+                            </tr>
+                        </thead>
+                        <tbody id="schedule-tbody">
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "main-right">
+        <div class = "main-robo">
+            <p>간호 보조 로봇</p>
+            <div class = "main-robo-area">
+                <div class = "main-robo-left">
+                    <div class = "main-robo-table">
+                        <table class = "t1" id="robot-table">
+                        <colgroup>
+                            <col style="width: 15%;">
+                            <col style="width: 20%;">
+                            <col style="width: 25%;">
+                            <col style="width: 40%;">
+                        </colgroup>
+                        <thead>
+                            <tr height="50">
+                                <th>로봇ID</th>
+                                <th>위치</th>
+                                <th>동작</th>
+                                <th>업데이트 시간</th>
+                            </tr>
+                        </thead>
+                        <tbody id="robot-tbody">
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr height="50">
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                <div class = "main-robo-right">
+                    <div class = "main-robo-right-1">
+                        <table class = "t1">
+                            <colgroup>
+                                <col style="width: auto;">
+                                <col style="width: auto;">
+                            </colgroup>
+                            <thead>
+                                <tr height="50">
+                                    <th>로봇ID</th>
+                                    <th>위치</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr height="50">
+                                    <td>MR01</td>
+                                    <td>1001호 1병상</td>
+                                </tr>
+                        </table>
+                    </div>
+                    <div class = "main-robo-right-2">
+                        <table class = "t1">
+                            <colgroup>
+                                <col style="width: auto;">
+                                <col style="width: auto;">
+                            </colgroup>
+                            <thead>
+                                <tr height="50">
+                                    <th>층</th>
+                                    <th>동작</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr height="50">
+                                    <td>1층</td>
+                                    <td>패트롤</td>
+                                </tr>
+                        </table>
+                        </table>
+                    </div>
+                    <p>진행상태</p>
+                    <div class = "main-robo-right-3">
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                        <p>MR01 로봇 1001호 1병동으로 이동 중</p>
+                    </div>
+                    <button class = "main-robo-button" type="button" onClick="location.href='robo.html'">로봇제어화면가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/main.js"></script>
+    <!-- <script src="../js/active.js"></script> -->
+</body>
+</html>
