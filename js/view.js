@@ -18,8 +18,9 @@ const clientnum = Math.floor(Math.random() * 101);
 
 // 알람 불러오기
 const get_alert = (msg) => {
+    // console.log(msg);
     const json = JSON.parse(msg);
-    console.log(json)
+    // console.log(json)
 
     alert_list.innerHTML = "";
     if (json == "")
@@ -92,89 +93,92 @@ const get_alert = (msg) => {
 }
 
 const get_vision = (msg) => {
+    console.log(msg);
     const json = JSON.parse(msg);
-    console.log(json)
+    console.log(json);
 
-    alert_list.innerHTML;
     if (json == "")
         return false;
+    if (json["pose"] == "1") {
+        let html_view = "";
 
-    for (let idx in json) {
-        if (json[idx]["water_discovery"] == "1") {
-            let html_view = "";
+        html_view += '<span class="txt">' + json["room"] + '호 ' + json["sickbed"] + '병상 욕창 감지</span>';
+        html_view += '<span class="group"><span class="time">' + json["uptime"] + '</span></span></li>';
 
-            html_view += '<li class = "blink">';
-            html_view += '<span class="txt">' + json[idx]["robot_id"] + '로봇 물 감지</span>';
-            html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
-            html_view += '</li>';
-
-            alert_list.innerHTML += html_view;
-        }
-        if (parseFloat(json[idx]["find_dust"]).toFixed(2) >= 0.3) {
-            let html_view = "";
-
-            html_view += '<li class = "blink">';
-            html_view += '<span class="txt">' + json[idx]["robot_id"] + '로봇 먼지 감지 </span>';
-            html_view += '<span class="txt"><span style ="font-size : 15px; margin-left: 9px; color:red;">' + json[idx]["find_dust"] + ' mg/m<sup>3</sup></span></span>';
-            html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
-            html_view += '</li>';
-
-            alert_list.innerHTML += html_view;
-        }
-        if (parseFloat(json[idx]["fire_detection"]) >= 300) {
-            let html_view = "";
-
-            html_view += '<li class = "blink">';
-            html_view += '<span class="txt">' + json[idx]["robot_id"] + '로봇 화재 감지 </span>';
-            html_view += '<span class="txt"><span style ="font-size : 15px; margin-left: 9px; color:red;">' + json[idx]["fire_detection"] + ' mg/m<sup>3</sup></span></span>';
-            html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
-            html_view += '</li>';
-
-            alert_list.innerHTML += html_view;
-        }
-        if (json[idx]["distance"] == "1") {
-            let html_view = "";
-
-            html_view += '<li class = "blink">';
-            html_view += '<span class="txt">' + json[idx]["robot_id"] + '로봇 멈춤 감지</span>';
-            html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
-            html_view += '</li>';
-
-            alert_list.innerHTML += html_view;
-        }
+        addNewAlert(html_view);
     }
+    if (json["down"] == "1") {
+        let html_view = "";
+
+        html_view += '<span class="txt">' + json["room"] + '호 ' + json["sickbed"] + '병상 낙상 감지</span>';
+        html_view += '<span class="group"><span class="time">' + json["uptime"] + '</span></span></li>';
+
+        addNewAlert(html_view);
+    }
+
 }
 
 const get_sensor = (msg) => {
     const json = JSON.parse(msg);
     console.log(json)
 
-    alert_list.innerHTML;
     if (json == "")
         return false;
-    for (let idx in json) {
-        if (json[idx]["pose"] == "1") {
-            let html_view = "";
 
-            html_view += '<li class = "blink">';
-            html_view += '<span class="txt">' + json[idx]["robot_id"] + '로봇 욕창 감지</span>';
-            html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span></span></li>';
-            html_view += '</li>';
+    if (json["water discovery"] == "1") {
+        let html_view = "";
 
-            alert_list.innerHTML += html_view;
-        }
-        if (json[idx]["down"] == "1") {
-            let html_view = "";
+        html_view += '<span class="txt">' + json["robot_id"] + '로봇 물 감지</span>';
+        html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
 
-            html_view += '<li class = "blink">';
-            html_view += '<span class="txt">' + json[idx]["robot_id"] + '로봇 낙상 감지</span>';
-            html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span></span></li>';
-            html_view += '</li>';
+        addNewAlert(html_view);
+    }
+    if (parseFloat(json["find dust"]).toFixed(2) >= 0.3) {
+        let html_view = "";
 
-            alert_list.innerHTML += html_view;
-        }
+        html_view += '<span class="txt">' + json["robot_id"] + '로봇 먼지 감지 </span>';
+        html_view += '<span class="txt"><span style ="font-size : 15px; margin-left: 9px; color:red;">' + json["find dust"] + ' mg/m<sup>3</sup></span></span>';
+        html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
+
+        addNewAlert(html_view);
+    }
+    if (parseFloat(json["fire detection"]) > 300) {
+        let html_view = "";
+
+        html_view += '<span class="txt">' + json["robot_id"] + '로봇 화재 감지 </span>';
+        html_view += '<span class="txt"><span style ="font-size : 15px; margin-left: 9px; color:red;">' + json["fire detection"] + ' mg/m<sup>3</sup></span></span>';
+        html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
+
+        addNewAlert(html_view);
+    }
+    if (json["distance"] == "1") {
+        let html_view = "";
+
+        html_view += '<span class="txt">' + json["robot_id"] + '로봇 멈춤 감지</span>';
+        html_view += '<span class="group"><span class="time">' + today + '</span></span></li>';
+
+        addNewAlert(html_view);
     }
 }
+
+// 신규 알림 추가 함수
+const addNewAlert = (html) => {
+    const newLi = document.createElement("li");
+    newLi.innerHTML = html;
+
+    // alert_list의 첫 번째 자식으로 새로운 항목을 추가합니다.
+    if (alert_list.firstChild) {
+        alert_list.insertBefore(newLi, alert_list.firstChild);
+    } else {
+        alert_list.appendChild(newLi);
+    }
+
+    // 새로 추가된 li에 깜빡임 효과 추가
+    newLi.classList.add("blink");
+
+    // 스크롤을 맨 위로 조절합니다.
+    alert_list.scrollTop = 0;
+};
 
 // 구독
 let client = "";
@@ -182,7 +186,7 @@ let client = "";
 const onConnect = () => {
     client.subscribe("/response/main/alarm/view");
     client.subscribe("/response/alarm/vision");
-    client.subscribe("/response/alarm/sensor");
+    client.subscribe("sensor");
     setTimeout(publish("/request/main/alarm/all", "0"), 2000);
 }
 
@@ -203,25 +207,33 @@ const onMessageArrived = (message) => {
             // console.log(msg);
             break;
         case "/response/alarm/vision":
-            get_vision(msg);
             // console.log(msg);
+            get_vision(msg);
             break;
-        case "/response/alarm/sensor":
-            // get_sensor(msg);
-            console.log(msg);
+        case "sensor":
+            get_sensor(msg);
+            // console.log(msg);
             break;
         default:
             break;
     }
 }
 
+// document.addEventListener("DOMContentLoaded", () => {
+//     const test_bn = document.getElementById("test-bn");
+
+//     test_bn.addEventListener("click", () => {
+//         let topic = "aos_pose_detect_result";
+//         let msg = '{"robot_id":"MR01","pose":"left","falldown":"true","patient_no":"201-03"}';
+//         publish(topic, msg);
+//     });
+// });
+
 // 데이터 보내기
 
 const publish = (topic, message) => {
     let msg = new Paho.Message(message);
     msg.destinationName = topic;
-    console.log(topic);
-    console.log(msg);
     client.send(msg);
 }
 
