@@ -68,6 +68,10 @@
     -webkit-animation: blink 1s step-end 10;
 }
 
+#myCanvas {
+    position: absolute;
+}
+
 @keyframes blink {
     50% {
         background-color: rgb(255, 66, 66);

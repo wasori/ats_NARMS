@@ -161,6 +161,7 @@ const get_sensor = (msg) => {
     }
 }
 
+
 // 신규 알림 추가 함수
 const addNewAlert = (html) => {
     const newLi = document.createElement("li");
@@ -180,6 +181,69 @@ const addNewAlert = (html) => {
     alert_list.scrollTop = 0;
 };
 
+const robotPositions = {
+    "MR01": [],
+    "MR02": [],
+    "MR03": [],
+    "MR04": [],
+    "MR05": []
+};
+
+// 로봇 좌표찍기
+const get_robot_position = (msg) => {
+    const json = JSON.parse(msg);
+    const robotId = json["robot_id"];
+
+    if (robotPositions.hasOwnProperty(robotId)) {
+        const robo_x = parseFloat(json["x"]) / 1.290951638065523;
+        const robo_y = parseFloat(json["y"]) / 1.080890973036342;
+
+        robotPositions[robotId] = [robo_x, robo_y];
+
+        console.log(robotPositions[robotId]);
+    }
+}
+
+const draw_robot_positions = () => {
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext("2d");
+    // 기존 그림 지우기
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const [robotId, coordinates] of Object.entries(robotPositions)) {
+        // 좌표와 색상
+        const [x, y] = coordinates;
+        let color = '';
+
+        if (robotId === 'MR01') {
+            color = 'red';
+        } else if (robotId === 'MR02') {
+            color = 'blue';
+        } else if (robotId === 'MR03') {
+            color = 'green';
+        } else if (robotId === 'MR04'){
+            color = 'yellow';
+        } else if (robotId === 'MR05'){
+            color = 'orange';
+        }
+
+        // 원 그리기 시작 설정
+        ctx.beginPath();
+
+        // 원 모양 설정
+        ctx.arc(x, y, 7, 0, 2 * Math.PI);
+
+        // 그리기
+        ctx.stroke();
+
+        // 원 내부 색 채우기
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+};
+
+setInterval(draw_robot_positions, 500);
+
 // 구독
 let client = "";
 
@@ -187,6 +251,7 @@ const onConnect = () => {
     client.subscribe("/response/main/alarm/view");
     client.subscribe("/response/alarm/vision");
     client.subscribe("sensor");
+    client.subscribe("robot_position");
     setTimeout(publish("/request/main/alarm/all", "0"), 2000);
 }
 
@@ -213,6 +278,10 @@ const onMessageArrived = (message) => {
         case "sensor":
             get_sensor(msg);
             // console.log(msg);
+            break;
+        case "robot_position":
+            get_robot_position(msg);
+            // console.log(mssg);
             break;
         default:
             break;
@@ -250,7 +319,6 @@ const connect = () => {
     console.log("연결성공");
 }
 
-
 // 연결 해제
 const disconnecter = () => {
     if (client != "") {
@@ -258,6 +326,7 @@ const disconnecter = () => {
         client = "";
     }
 }
+
 
 // 웹페이지 열리고 실행
 window.onload = () => {

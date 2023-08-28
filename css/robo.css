@@ -207,3 +207,95 @@
     border: 1px solid #333;
     box-sizing: border-box;
 }
+
+.blink {
+    -webkit-animation: blink 1s step-end 10;
+}
+
+@keyframes blink {
+    50% {
+        background-color: rgb(255, 66, 66);
+    }
+}
+
+body{
+    position: relative;
+}
+
+.popup{
+    position: absolute;
+    top: 230px;
+    left: 700px;
+
+    width: 550px;
+    height: 200px;
+
+    background-color: white;
+    border: 1px solid black;
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+
+    flex-direction: column;
+    z-index: 1;
+}
+
+.popup .tit{
+    width: 400px;
+    height: 30px;
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.popup .tit span{
+    font-size: 16px;
+}
+
+.popup .comment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 500px;
+    height: 70px;
+    font-weight: bold;
+}
+
+.popup .comment p{
+    width:100px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.popup .comment input{
+    width: 350px;
+    height: 40px;
+}
+
+.popup .bn{
+    width: 200px;
+    height: 40px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.popup .bn button{
+    width: 80px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+}
+
+.popup .bn button:nth-child(1){
+    background-color: rgb(132, 220, 132);
+}
+
+.popup .bn button:nth-child(2){
+    background-color: rgb(220, 136, 132);
+}
