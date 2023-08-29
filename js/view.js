@@ -195,8 +195,8 @@ const get_robot_position = (msg) => {
     const robotId = json["robot_id"];
 
     if (robotPositions.hasOwnProperty(robotId)) {
-        const robo_x = parseFloat(json["x"]) / 1.290951638065523;
-        const robo_y = parseFloat(json["y"]) / 1.080890973036342;
+        const robo_x = parseFloat(json["x"]) / 1.314535345512311;
+        const robo_y = parseFloat(json["y"]) / 1.112183353437877;
 
         robotPositions[robotId] = [robo_x, robo_y];
 

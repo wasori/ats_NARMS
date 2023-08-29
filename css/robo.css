@@ -299,3 +299,7 @@ body{
 .popup .bn button:nth-child(2){
     background-color: rgb(220, 136, 132);
 }
+
+#myCanvas {
+    position: absolute;
+}

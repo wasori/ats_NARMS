@@ -36,14 +36,14 @@ const popup = (me) => {
     let topic = "/request/data/alarm/one";
     let message = me.value;
 
-    publish(topic,message);
+    publish(topic, message);
 }
 
 const popclose = () => {
     pop.style.display = "none";
 }
 
-const upalarm = (num) =>{
+const upalarm = (num) => {
 
     let activeId = "MR10";
     let activedate = "location";
@@ -51,14 +51,14 @@ const upalarm = (num) =>{
     let comment = document.getElementById(num.value);
 
     let topic = "/request/update/alarm/one";
-    let message = '{"num":"' + num.value + '","comment":"' + comment.value+ '"}';
+    let message = '{"num":"' + num.value + '","comment":"' + comment.value + '"}';
 
-    publish(topic,message);
+    publish(topic, message);
 
     popclose();
 }
 
-const pop_view = (msg) =>{
+const pop_view = (msg) => {
     const json = JSON.parse(msg);
 
     if (json == "")
@@ -66,60 +66,60 @@ const pop_view = (msg) =>{
 
     let pophtml = "";
 
-    if(json[0]["conmment"]=="" || json[0]["conmment"]== null)
+    if (json[0]["conmment"] == "" || json[0]["conmment"] == null)
         json[0]["conmment"] = "";
 
     switch (json[0]["content"]) {
         case "water":
-            pophtml +='<div class="tit">'+json[0]["rid"]+' 로봇 물 감지</div>';
-            pophtml +='<div class="comment"><p>조치 행동</p>';
-            pophtml +='<input type="text" id="'+json[0]["num"]+'" value="'+json[0]["comment"]+'"></div>';
-            pophtml += '<div class="bn"><button type="button" value="'+json[0]["num"]+'" onclick="upalarm(this)">확인</button>';
+            pophtml += '<div class="tit">' + json[0]["rid"] + ' 로봇 물 감지</div>';
+            pophtml += '<div class="comment"><p>조치 행동</p>';
+            pophtml += '<input type="text" id="' + json[0]["num"] + '" value="' + json[0]["comment"] + '"></div>';
+            pophtml += '<div class="bn"><button type="button" value="' + json[0]["num"] + '" onclick="upalarm(this)">확인</button>';
             pophtml += '<button type="button" onclick="popclose();">취소</button></div>';
             break;
         case "fire":
-            pophtml +='<div class="tit">'+json[0]["rid"]+' 로봇 화염 감지</div>';
-            pophtml += '<span>'+json[0]["value"]+'mg/m<sup>3</sup></span>';
-            pophtml +='<div class="comment"><p>조치 행동</p>';
-            pophtml +='<input type="text" id="comment" value="'+json[0]["comment"]+'"></div>';
-            pophtml += '<div class="bn"><button type="button" value="'+json[0]["num"]+'" onclick="upalarm(this)">확인</button>';
+            pophtml += '<div class="tit">' + json[0]["rid"] + ' 로봇 화염 감지</div>';
+            pophtml += '<span>' + json[0]["value"] + 'mg/m<sup>3</sup></span>';
+            pophtml += '<div class="comment"><p>조치 행동</p>';
+            pophtml += '<input type="text" id="comment" value="' + json[0]["comment"] + '"></div>';
+            pophtml += '<div class="bn"><button type="button" value="' + json[0]["num"] + '" onclick="upalarm(this)">확인</button>';
             pophtml += '<button type="button" onclick="popclose();">취소</button></div>';
             break;
         case "dust":
-            pophtml +='<div class="tit">'+json[0]["rid"]+' 로봇 미세먼지 감지</div>';
-            pophtml +='<div class="comment"><p>조치 행동</p>';
-            pophtml +='<input type="text" id="comment" value="'+json[0]["comment"]+'"></div>';
-            pophtml += '<div class="bn"><button type="button" value="'+json[0]["num"]+'" onclick="upalarm(this)">확인</button>';
+            pophtml += '<div class="tit">' + json[0]["rid"] + ' 로봇 미세먼지 감지</div>';
+            pophtml += '<div class="comment"><p>조치 행동</p>';
+            pophtml += '<input type="text" id="comment" value="' + json[0]["comment"] + '"></div>';
+            pophtml += '<div class="bn"><button type="button" value="' + json[0]["num"] + '" onclick="upalarm(this)">확인</button>';
             pophtml += '<button type="button" onclick="popclose();">취소</button></div>';
             break;
         case "distance":
-            pophtml +='<div class="tit">'+json[0]["rid"]+' 로봇 멈춤 감지</div>';
-            pophtml +='<div class="comment"><p>조치 행동</p>';
-            pophtml +='<input type="text" id="comment" value="'+json[0]["comment"]+'"></div>';
-            pophtml += '<div class="bn"><button type="button" value="'+json[0]["num"]+'" onclick="upalarm(this)">확인</button>';
+            pophtml += '<div class="tit">' + json[0]["rid"] + ' 로봇 멈춤 감지</div>';
+            pophtml += '<div class="comment"><p>조치 행동</p>';
+            pophtml += '<input type="text" id="comment" value="' + json[0]["comment"] + '"></div>';
+            pophtml += '<div class="bn"><button type="button" value="' + json[0]["num"] + '" onclick="upalarm(this)">확인</button>';
             pophtml += '<button type="button" onclick="popclose();">취소</button></div>';
             break;
         case "down":
-            pophtml +='<div class="tit">'+json[0]["room"]+'호실 '+json[0]["sickbed"]+'병상 낙상 감지</div>';
-            pophtml +='<div class="comment"><p>조치 행동</p>';
-            pophtml +='<input type="text" id="comment" value="'+json[0]["comment"]+'"></div>';
-            pophtml += '<div class="bn"><button type="button" value="'+json[0]["num"]+'" onclick="upalarm(this)">확인</button>';
+            pophtml += '<div class="tit">' + json[0]["room"] + '호실 ' + json[0]["sickbed"] + '병상 낙상 감지</div>';
+            pophtml += '<div class="comment"><p>조치 행동</p>';
+            pophtml += '<input type="text" id="comment" value="' + json[0]["comment"] + '"></div>';
+            pophtml += '<div class="bn"><button type="button" value="' + json[0]["num"] + '" onclick="upalarm(this)">확인</button>';
             pophtml += '<button type="button" onclick="popclose();">취소</button></div>';
             break;
         case "pose":
-            pophtml +='<div class="tit">'+json[0]["room"]+'호실 '+json[0]["sickbed"]+'병상 낙상 감지</div>';
-            pophtml +='<div class="comment"><p>조치 행동</p>';
-            pophtml +='<input type="text" id="comment" value="'+json[0]["comment"]+'"></div>';
-            pophtml += '<div class="bn"><button type="button" value="'+json[0]["num"]+'" onclick="upalarm(this)">확인</button>';
+            pophtml += '<div class="tit">' + json[0]["room"] + '호실 ' + json[0]["sickbed"] + '병상 낙상 감지</div>';
+            pophtml += '<div class="comment"><p>조치 행동</p>';
+            pophtml += '<input type="text" id="comment" value="' + json[0]["comment"] + '"></div>';
+            pophtml += '<div class="bn"><button type="button" value="' + json[0]["num"] + '" onclick="upalarm(this)">확인</button>';
             pophtml += '<button type="button" onclick="popclose();">취소</button></div>';
             break;
-    
+
         default:
             break;
     }
 
     pop.innerHTML = pophtml;
-    
+
 }
 
 const get_alert = (msg) => {
@@ -137,7 +137,7 @@ const get_alert = (msg) => {
             html_view += '<li>';
             html_view += '<span class="txt">' + json[idx]["rid"] + '로봇 물 감지</span>';
             html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span>';
-            html_view += '<button type="button" onclick="popup(this)" value="'+json[idx]["num"]+'">확인</button></span></li>';
+            html_view += '<button type="button" onclick="popup(this)" value="' + json[idx]["num"] + '">확인</button></span></li>';
 
             alert_list.innerHTML += html_view;
         }
@@ -148,7 +148,7 @@ const get_alert = (msg) => {
             html_view += '<span class="txt">' + json[idx]["rid"] + '로봇 화재 감지 </span>';
             html_view += '<span class="txt"><span style ="font-size : 15px; margin-left: -15px; color:red;">' + json[idx]["value"] + ' mg/m<sup>3</sup></span></span>';
             html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span>';
-            html_view += '<button type="button" onclick="popup(this)" value="'+json[idx]["num"]+'">확인</button></span></li>';
+            html_view += '<button type="button" onclick="popup(this)" value="' + json[idx]["num"] + '">확인</button></span></li>';
 
             alert_list.innerHTML += html_view;
         }
@@ -159,7 +159,7 @@ const get_alert = (msg) => {
             html_view += '<span class="txt">' + json[idx]["rid"] + '로봇 먼지 감지 </span>';
             html_view += '<span class="txt"><span style ="font-size : 15px; margin-left: -15px; color:red;">' + json[idx]["value"] + ' mg/m<sup>3</sup></span></span>';
             html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span>';
-            html_view += '<button type="button" onclick="popup(this)" value="'+json[idx]["num"]+'">확인</button></span></li>';
+            html_view += '<button type="button" onclick="popup(this)" value="' + json[idx]["num"] + '">확인</button></span></li>';
 
             alert_list.innerHTML += html_view;
         }
@@ -169,7 +169,7 @@ const get_alert = (msg) => {
             html_view += '<li>';
             html_view += '<span class="txt">' + json[idx]["rid"] + '로봇 낙상 감지</span>';
             html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span>';
-            html_view += '<button type="button" onclick="popup(this)" value="'+json[idx]["num"]+'">확인</button></span></li>';
+            html_view += '<button type="button" onclick="popup(this)" value="' + json[idx]["num"] + '">확인</button></span></li>';
 
             alert_list.innerHTML += html_view;
         }
@@ -179,7 +179,7 @@ const get_alert = (msg) => {
             html_view += '<li>';
             html_view += '<span class="txt">' + json[idx]["rid"] + '로봇 멈춤 감지</span>';
             html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span>';
-            html_view += '<button type="button" onclick="popup(this)" value="'+json[idx]["num"]+'">확인</button></span></li>';
+            html_view += '<button type="button" onclick="popup(this)" value="' + json[idx]["num"] + '">확인</button></span></li>';
 
             alert_list.innerHTML += html_view;
         }
@@ -189,7 +189,7 @@ const get_alert = (msg) => {
             html_view += '<li>';
             html_view += '<span class="txt">' + json[idx]["rid"] + '로봇 욕창 감지</span>';
             html_view += '<span class="group"><span class="time">' + json[idx]["uptime"] + '</span>';
-            html_view += '<button type="button" onclick="popup(this)" value="'+json[idx]["num"]+'">확인</button></span></li>';
+            html_view += '<button type="button" onclick="popup(this)" value="' + json[idx]["num"] + '">확인</button></span></li>';
 
             alert_list.innerHTML += html_view;
         }
@@ -289,10 +289,10 @@ const addNewAlert = (html) => {
     alert_list.scrollTop = 0;
 };
 
-const location_table = (data) =>{
+const location_table = (data) => {
     const json = JSON.parse(data);
 
-    for(let idx in json){
+    for (let idx in json) {
         locationdata.push(json[idx]);
     }
 }
@@ -310,7 +310,8 @@ const onConnect = () => {
     client.subscribe("/response/alarm/vision");
     client.subscribe("sensor");
     client.subscribe("/response/data/alarm/one");
-    setTimeout(publish("/request/data/location/info","0"),2000);
+    client.subscribe("robot_position");
+    setTimeout(publish("/request/data/location/info", "0"), 2000);
     setTimeout(publish("/request/main/alarm/all", "0"), 2000);
 }
 
@@ -334,12 +335,16 @@ const onMessageArrived = (message) => {
         case "/response/data/alarm/one":
             pop_view(msg);
             break;
+        case "robot_position":
+            get_robot_position(msg);
+            // console.log(mssg);
+            break;
         default:
             break;
     }
 }
 
-const publish = (topic,message) => {
+const publish = (topic, message) => {
     let msg = new Paho.Message(message);
     msg.destinationName = topic;
     client.send(msg);
@@ -348,7 +353,7 @@ const publish = (topic,message) => {
 
 const connect = () => {
 
-    client = new Paho.Client('112.221.113.29', 9001, "Medical"+String(clientnum));
+    client = new Paho.Client('112.221.113.29', 9001, "Medical" + String(clientnum));
 
     client.onConnectionLost = onConnectionLost;
     client.onMessageArrived = onMessageArrived;
@@ -365,26 +370,26 @@ const disconnecter = () => {
     }
 }
 
-start.addEventListener("click",()=>{
-    if(id.value == 0){
+start.addEventListener("click", () => {
+    if (id.value == 0) {
         alert("로봇을 선택해주세요.")
         return false;
     }
 
-    if(room.value == 0){
+    if (room.value == 0) {
         alert("호실을 선택해주세요.")
         return false;
     }
 
-    if(sickbed.value == 0){
+    if (sickbed.value == 0) {
         alert("병상을 선택해주세요.")
         return false;
     }
 
     let topic = "web_cmd/goto_position";
 
-    for(let idx in locationdata){
-        if(locationdata[idx]["room"] == room.value && locationdata[idx]["sickbed"] == sickbed.value){
+    for (let idx in locationdata) {
+        if (locationdata[idx]["room"] == room.value && locationdata[idx]["sickbed"] == sickbed.value) {
             xaxis = locationdata[idx]["xaxis"];
             yaxis = locationdata[idx]["yaxis"];
 
@@ -392,51 +397,113 @@ start.addEventListener("click",()=>{
         }
     }
 
-    let message = '{"robot_id":"'+id.value+'","x":'+xaxis+',"y":'+yaxis+'}';
+    let message = '{"robot_id":"' + id.value + '","x":' + xaxis + ',"y":' + yaxis + '}';
 
-    publish(topic,message);
+    publish(topic, message);
     xaxis = "";
     yaxis = "";
 
 });
 
-patrol.addEventListener("click",()=>{
-    if(id.value == 0){
+patrol.addEventListener("click", () => {
+    if (id.value == 0) {
         alert("로봇을 선택해주세요.")
         return false;
     }
 
     let topic = "web_cmd/do_patrol";
-    let message = '{"robot_id":"'+id.value+'"}';
+    let message = '{"robot_id":"' + id.value + '"}';
 
-    publish(topic,message);
+    publish(topic, message);
 });
 
-turn.addEventListener("click",()=>{
-    if(id.value == 0){
+turn.addEventListener("click", () => {
+    if (id.value == 0) {
         alert("로봇을 선택해주세요.")
         return false;
     }
 
     let topic = "web_cmd/return_base";
-    let message = '{"robot_id":"'+id.value+'"}';
+    let message = '{"robot_id":"' + id.value + '"}';
 
-    publish(topic,message);
+    publish(topic, message);
 });
 
-stop.addEventListener("click",()=>{
-    if(id.value == 0){
+stop.addEventListener("click", () => {
+    if (id.value == 0) {
         alert("로봇을 선택해주세요.")
         return false;
     }
 
     let topic = "web_cmd/force_stop";
-    let message = '{"robot_id":"'+id.value+'"}';
+    let message = '{"robot_id":"' + id.value + '"}';
 
-    publish(topic,message);
+    publish(topic, message);
 });
+
+const robotPositions = {
+    "MR01": [],
+    "MR02": [],
+    "MR03": [],
+    "MR04": [],
+    "MR05": []
+};
+
+// 로봇 좌표찍기
+const get_robot_position = (msg) => {
+    const json = JSON.parse(msg);
+    const robotId = json["robot_id"];
+
+    if (robotPositions.hasOwnProperty(robotId)) {
+        const robo_x = parseFloat(json["x"]) / 1.617790811339198;
+        const robo_y = parseFloat(json["y"]) / 1.224435590969456;
+
+        robotPositions[robotId] = [robo_x, robo_y];
+
+        console.log(robotPositions[robotId]);
+    }
+}
+
+const draw_robot_positions = () => {
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext("2d");
+    // 기존 그림 지우기
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (const [robotId, coordinates] of Object.entries(robotPositions)) {
+        // 좌표와 색상
+        const [x, y] = coordinates;
+        let color = '';
+
+        if (robotId === 'MR01') {
+            color = 'red';
+        } else if (robotId === 'MR02') {
+            color = 'blue';
+        } else if (robotId === 'MR03') {
+            color = 'green';
+        } else if (robotId === 'MR04') {
+            color = 'yellow';
+        } else if (robotId === 'MR05') {
+            color = 'orange';
+        }
+
+        // 원 그리기 시작 설정
+        ctx.beginPath();
+
+        // 원 모양 설정
+        ctx.arc(x, y, 7, 0, 2 * Math.PI);
+
+        // 그리기
+        ctx.stroke();
+
+        // 원 내부 색 채우기
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+};
+
+setInterval(draw_robot_positions, 500);
 
 window.onload = () => {
     connect();
 }
-
